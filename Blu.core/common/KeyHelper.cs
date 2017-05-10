@@ -1,7 +1,7 @@
 ﻿using System;
-using ReturnType = BluApi.Common.Function;
+using ReturnType = Blu.core.common.Function;
 
-namespace BluApi.Common
+namespace Blu.core.common
 {
     /// <summary>
     /// RSA key helper

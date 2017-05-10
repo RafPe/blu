@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using BluApi.Chef.ChefAPI;
-using ReturnType = BluApi.Common.Function;
+using ReturnType = Blu.core.common.Function;
 
-namespace BluApi.Common
+namespace Blu.core.common
 {
     public class RubyHelper
     {

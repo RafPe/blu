@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using BluApi.Chef.ChefAPI;
-using ReturnType = BluApi.Common.Function;
+using ReturnType = Blu.core.common.Function;
 
-namespace BluApi.Common
+namespace Blu.core.common
 {
     /// <summary>
     /// Logger class to log a line to console and write the log line in ./BluStation.log 
@@ -13,6 +12,7 @@ namespace BluApi.Common
     {
         public static void log(string caption, string content)
         {
+            //TODO: Remove this dependency 
             if (caption == "api" && !ChefConfig.ApiLog) return;
             
             string logpath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\BluStation.log";

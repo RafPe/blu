@@ -82,16 +82,6 @@
     <Compile Include="Chef\ChefResources\Client.cs" />
     <Compile Include="Chef\ChefResources\Cookbook.cs" />
     <Compile Include="Chef\ChefResources\Node.cs" />
-    <Compile Include="Common\AssemblyResolver.cs" />
-    <Compile Include="Common\IOHelper.cs" />
-    <Compile Include="Common\JsonHelper.cs" />
-    <Compile Include="Common\OpenSSL.cs" />
-    <Compile Include="Common\Function.cs" />
-    <Compile Include="Common\KeyHelper.cs" />
-    <Compile Include="Common\Logger.cs" />
-    <Compile Include="Common\RegistryHelper.cs" />
-    <Compile Include="Common\RubyHelper.cs" />
-    <Compile Include="Common\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +91,9 @@
     <None Include="app.config" />
     <None Include="BluApi.cd" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

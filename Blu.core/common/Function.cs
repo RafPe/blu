@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BluApi.Common
+namespace Blu.core.common
 {
     /// <summary>
     /// Function class is a tricky name, there is no "function" in C#, they are called "method" and defined by return type ;)

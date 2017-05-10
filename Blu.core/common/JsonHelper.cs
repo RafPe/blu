@@ -3,7 +3,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace BluApi.Common
+namespace Blu.core.common
 {
     public static class JsonHelper
     {

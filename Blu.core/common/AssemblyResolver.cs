@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace BluApi.Common
+namespace Blu.core.common
 {
     /// <summary>
     /// For portability, all referenced libraries in this project are loaded as "Embedded Assmebly".

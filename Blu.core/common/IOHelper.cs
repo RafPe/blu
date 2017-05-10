@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BluApi.Common
+namespace Blu.core.common
 {
     public static class IOHelper
     {

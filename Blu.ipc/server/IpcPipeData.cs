@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO.Pipes;
 
-namespace Blu.ipc.client
+namespace Blu.ipc.server
 {
     // Internal data associated with pipes
-    internal struct IpcPipeData
+    struct IpcPipeData
     {
         public PipeStream Pipe;
         public Object State;

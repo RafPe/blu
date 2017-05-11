@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO.Pipes;
 
-namespace Blu.ipc.server
+namespace Blu.core.contracts
 {
     // Interface for user code to receive notifications regarding pipe messages
     public interface IIpcCallback

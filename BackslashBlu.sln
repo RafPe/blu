@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blu.api", "Blu.api\Blu.api.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blu.ipc", "Blu.ipc\Blu.ipc.csproj", "{D5A2F990-D74D-468A-AA8C-1671B990CF44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blu.service", "Blu.service\Blu.service.csproj", "{96E807F8-6A2E-49DE-B8E1-CE2B77AA79D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{D5A2F990-D74D-468A-AA8C-1671B990CF44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5A2F990-D74D-468A-AA8C-1671B990CF44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5A2F990-D74D-468A-AA8C-1671B990CF44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E807F8-6A2E-49DE-B8E1-CE2B77AA79D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E807F8-6A2E-49DE-B8E1-CE2B77AA79D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E807F8-6A2E-49DE-B8E1-CE2B77AA79D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E807F8-6A2E-49DE-B8E1-CE2B77AA79D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

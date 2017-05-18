@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Net.Http;
-using Blu.core.contracts;
-using Blu.core.enums;
 
 namespace Blu.api.chef
 {
-    public class ChefApi : IChefApi
+    class ChefApi
     {
+        /// <summary>
+        /// Readonly System.Uri refereing to Chef server Uri
+        /// </summary>
         private readonly Uri _chefServer;
 
+        /// <summary>
+        /// Chef server Uri
+        /// </summary>
+        /// <param name="chefServer"></param>
         public ChefApi(Uri chefServer)
         {
             _chefServer = chefServer;
@@ -29,25 +34,6 @@ namespace Blu.api.chef
                 result.EnsureSuccessStatusCode();
                 return result.Content.ReadAsStringAsync().Result;
             }
-        }
-
-
-        public string Execute(ChefRequestMethod method, string client, string resource, string body)
-        {
-
-
-            switch (method)
-            {
-                case ChefRequestMethod.get: break;
-                case ChefRequestMethod.post: break;
-                case ChefRequestMethod.put: break;
-                case ChefRequestMethod.delete: break;
-            }
-
-            return null;
-
-
-            //throw new NotImplementedException();
         }
     }
 }

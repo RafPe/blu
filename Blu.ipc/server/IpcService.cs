@@ -5,6 +5,7 @@ using System.IO.Pipes;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Threading;
+using Blu.core.contracts;
 
 namespace Blu.ipc.server
 {

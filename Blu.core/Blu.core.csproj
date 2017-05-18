@@ -56,7 +56,9 @@
     <Compile Include="common\RegistryHelper.cs" />
     <Compile Include="common\RubyHelper.cs" />
     <Compile Include="common\StringHelper.cs" />
+    <Compile Include="contracts\IChefRequest.cs" />
     <Compile Include="contracts\IIpcCallback.cs" />
+    <Compile Include="enums\ChefRequestMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

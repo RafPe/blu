@@ -12,7 +12,9 @@ namespace Blu.core.common
             ReturnType rt = new ReturnType();
             try
             {
-                StreamWriter sw = new StreamWriter(ChefConfig.ClientRb);
+                //TODO: Remove this reference before going further
+//                StreamWriter sw = new StreamWriter(ChefConfig.ClientRb);
+                StreamWriter sw = new StreamWriter("");
                 foreach (var param in dict)
                 {
                     sw.WriteLine("{0} {1}", param.Key, param.Value);

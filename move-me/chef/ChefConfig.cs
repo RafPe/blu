@@ -7,6 +7,11 @@ namespace Blu.api.chef
     public static class ChefConfig
     {
         /// <summary>
+        /// Root is Assembly Location.
+        /// </summary>
+        public static string Root = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+        /// <summary>
         /// URI of the Chef organization.
         /// </summary>
         public static Uri OrganizationUri = new Uri("https://organizationUri_is_undefined");

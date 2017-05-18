@@ -13,7 +13,7 @@ namespace Blu.core.common
         public static void log(string caption, string content)
         {
             //TODO: Remove this dependency 
-            if (caption == "api" && !ChefConfig.ApiLog) return;
+            //if (caption == "api" && !ChefConfig.ApiLog) return;
             
             string logpath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\BluStation.log";
             string log = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");

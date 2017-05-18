@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http;
 using System.Text;
-using Blu.core.common;
 
 namespace Blu.api.chef
 {
@@ -9,6 +9,7 @@ namespace Blu.api.chef
     {
         private readonly string _chefClient;
         private readonly Uri _chefUri;
+        private readonly HttpMethod _httpMethod;
         private readonly string _body;
         private readonly string _timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
         private string _signature = String.Empty;
@@ -18,8 +19,6 @@ namespace Blu.api.chef
         {
         }
 
-
-        //TODO: Pass chef config as parameter ?
         public XOpsProtocol(string chefClient, Uri chefUri, HttpMethod httpMethod, string body)
         {
             _chefClient = chefClient;

@@ -42,8 +42,13 @@
     <Compile Include="client\IpcClient.cs" />
     <Compile Include="client\IpcPipeData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="server\IpcServer.cs" />
     <Compile Include="server\IpcPipeData.cs" />
     <Compile Include="server\IpcService.cs" />
+    <Compile Include="server\PowerShellRunspace.cs" />
+    <Compile Include="server\PowerShellRunspaceManager.cs" />
+    <Compile Include="UserData.cs" />
+    <Compile Include="WindowStationAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blu.core\Blu.core.csproj">

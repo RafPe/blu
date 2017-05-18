@@ -8,18 +8,18 @@ namespace Blu.core.common
         private string _subKey = "SOFTWARE\\Blu";
         public string SubKey
         {
-            get { return _subKey; }
-            set { _subKey = value; }
+            get => _subKey;
+            set => _subKey = value;
         }
 
         private RegistryKey _baseRegistryKey = Registry.LocalMachine;
         public RegistryKey BaseRegistryKey
         {
-            get { return _baseRegistryKey; }
-            set { _baseRegistryKey = value; }
+            get => _baseRegistryKey;
+            set => _baseRegistryKey = value;
         }
 
-        public string Read(string keyName)
+        public string ReadRegistryKey(string keyName)
         {
             RegistryKey rk = _baseRegistryKey;
             RegistryKey sk1 = rk.OpenSubKey(_subKey);
@@ -38,19 +38,13 @@ namespace Blu.core.common
             }
         }
 
-        /// <summary>
-        /// Writes a value to registry
-        /// </summary>
-        /// <param name="keyName">registry key as string</param>
-        /// <param name="value">registry value as object</param>
-        /// <returns></returns>
-        public bool Write(string keyName, object value)
+        public bool WriteRegistryKey(string keyName, object value)
         {
             try
             {
                 RegistryKey rk = _baseRegistryKey;
                 RegistryKey sk1 = rk.CreateSubKey(_subKey);
-                if (sk1 != null) sk1.SetValue(keyName, value);
+                sk1?.SetValue(keyName, value);
                 return true;
             }
             catch (Exception ex)
@@ -60,10 +54,6 @@ namespace Blu.core.common
             }
         }
 
-        /// <summary>
-        /// Deletes a subkey from registry
-        /// </summary>
-        /// <returns>true if success, false if failed</returns>
         public bool DeleteSubKeyTree()
         {
             try

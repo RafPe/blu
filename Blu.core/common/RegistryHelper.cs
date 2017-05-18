@@ -3,54 +3,22 @@ using Microsoft.Win32;
 
 namespace Blu.core.common
 {
-    public static class RegistryUtil
-    {
-        private static readonly RegistryKey BaseRegistryKey = Registry.LocalMachine;
-        private const string SubKey = "SOFTWARE\\Blu";
-
-        public static string ReadRegistryKey(string keyName)
-        {
-            RegistryKey rk = BaseRegistryKey;
-            RegistryKey sk1 = rk.OpenSubKey(SubKey);
-
-            if (sk1 == null) return null;
-
-            try
-            {
-                return (string)sk1.GetValue(keyName);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Win32 registy helper class
-    /// </summary>
     public class RegistryHelper
     {
-        /// <summary>
-        /// Subkey, default to HKLM\Software\Blu
-        /// </summary>
         private string _subKey = "SOFTWARE\\Blu";
         public string SubKey
         {
             get { return _subKey; }
             set { _subKey = value; }
         }
+
         private RegistryKey _baseRegistryKey = Registry.LocalMachine;
         public RegistryKey BaseRegistryKey
         {
             get { return _baseRegistryKey; }
             set { _baseRegistryKey = value; }
         }
-        /// <summary>
-        /// Reads a registry value
-        /// </summary>
-        /// <param name="keyName">registy key as string</param>
-        /// <returns></returns>
+
         public string Read(string keyName)
         {
             RegistryKey rk = _baseRegistryKey;
@@ -59,17 +27,14 @@ namespace Blu.core.common
             {
                 return null;
             }
-            else
+            try
             {
-                try
-                {
-                    return (string)sk1.GetValue(keyName);
-                }
-                catch (Exception ex)
-                {
-                    Logger.log("error", "Error reading registry key " + keyName + " - " + ex.Message);
-                    return null;
-                }
+                return (string)sk1.GetValue(keyName);
+            }
+            catch (Exception ex)
+            {
+                Logger.log("error", "Error reading registry key " + keyName + " - " + ex.Message);
+                return null;
             }
         }
 

@@ -1,42 +1,44 @@
-﻿using System;
-using System.Net.Http;
-using Blu.core.contracts;
+﻿using Blu.core.contracts;
 using Blu.core.enums;
+using RestSharp;
 
 namespace Blu.api.chef
 {
     public class ChefApi : IChefApi
     {
-        private readonly Uri _chefServer;
+        private IChefConfig _chefConfig;
+        private RestClient _restClient;
 
-        public ChefApi(Uri chefServer)
+        public ChefApi()
         {
-            _chefServer = chefServer;
+            
         }
 
-        /// <summary>
-        /// Sends a REST API request to Chef server
-        /// </summary>
-        /// <param name="xOpsProtocol">An instance of the X-Ops Protocol</param>
-        /// <returns>result of the API request as async string</returns>
-        public string SendRest(XOpsProtocol xOpsProtocol)
+        public ChefApi(IChefConfig chefConfig)
         {
-            using (var restClient = new HttpClient())
-            {
-                restClient.BaseAddress = _chefServer;
-                var payload = xOpsProtocol.CreateMessage();
-                var result = restClient.SendAsync(payload).Result;
-                result.EnsureSuccessStatusCode();
-                return result.Content.ReadAsStringAsync().Result;
-            }
+            _chefConfig = chefConfig;
         }
 
+        ///// <summary>
+        ///// Sends a REST API request to Chef server
+        ///// </summary>
+        ///// <param name="xOpsProtocol">An instance of the X-Ops Protocol</param>
+        ///// <returns>result of the API request as async string</returns>
+        //public string SendRest(XOpsProtocol xOpsProtocol)
+        //{
+        //    using (var restClient = new HttpClient())
+        //    {
+        //        restClient.BaseAddress = _chefServer;
+        //        var payload = xOpsProtocol.CreateMessage();
+        //        var result = restClient.SendAsync(payload).Result;
+        //        result.EnsureSuccessStatusCode();
+        //        return result.Content.ReadAsStringAsync().Result;
+        //    }
+        //}
 
-        public string Execute(ChefRequestMethod method, string client, string resource, string body)
+        public string Execute(IChefRequest req)
         {
-
-
-            switch (method)
+            switch (req.method)
             {
                 case ChefRequestMethod.get: break;
                 case ChefRequestMethod.post: break;
@@ -45,9 +47,6 @@ namespace Blu.api.chef
             }
 
             return null;
-
-
-            //throw new NotImplementedException();
         }
     }
 }

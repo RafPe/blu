@@ -1,15 +1,20 @@
-﻿using Blu.core.contracts;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Blu.core.enums;
+using Blu.core.contracts;
+
 
 namespace Blu.api.chef
 {
-    public class ChefRequest
+    public class ChefRequest: IChefRequest
     {
         public Dictionary<string,string> XopsHeaders { get; set; }
         public string                    body        { get; set; }
+        public ChefRequestMethod         method      { get; set; }
 
+        public ChefRequest()
+        {
+            
+        }
 
         //public string Get(string restClient, string restNode)
         //{

@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blu.service", "Blu.service\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "move-me", "move-me\move-me.csproj", "{5B2A8CF1-81B0-4016-AB7E-8E17F7A554E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blu.api", "Blu.api\Blu.api.csproj", "{67117137-659F-46A4-A8DF-42E0DBF27104}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blu.api", "Blu.api\Blu.api.csproj", "{550853BE-A5B8-4053-967F-FE253C3E3C2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{5B2A8CF1-81B0-4016-AB7E-8E17F7A554E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B2A8CF1-81B0-4016-AB7E-8E17F7A554E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B2A8CF1-81B0-4016-AB7E-8E17F7A554E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67117137-659F-46A4-A8DF-42E0DBF27104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67117137-659F-46A4-A8DF-42E0DBF27104}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67117137-659F-46A4-A8DF-42E0DBF27104}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67117137-659F-46A4-A8DF-42E0DBF27104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{550853BE-A5B8-4053-967F-FE253C3E3C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{550853BE-A5B8-4053-967F-FE253C3E3C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{550853BE-A5B8-4053-967F-FE253C3E3C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{550853BE-A5B8-4053-967F-FE253C3E3C2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

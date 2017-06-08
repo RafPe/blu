@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using System.Text;
 using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Blu.core.common
 {

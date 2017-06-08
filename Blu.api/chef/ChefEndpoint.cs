@@ -1,4 +1,5 @@
-﻿namespace Blu.api.chef
+﻿
+namespace Blu.api.chef
 {
     public static class ChefEndpoint
     {

@@ -5,8 +5,10 @@ namespace Blu.core.contracts
 {
     public interface IChefRequest
     {
-        Dictionary<string, string> XopsHeaders { get; set; }
-        string body { get; set; }
-        ChefRequestMethod method { get; set; }
+        ChefRequestMethod ChefRequestMethod { get; set; }
+
+        string SignMessage(ChefRequestMethod chefRequestMethod, IChefConfig chefConfig, string privateKey, string body_content_hash);
+
+        Dictionary<string, string> CreateXopsMessage(string body, string resourceUri);
     }
 }

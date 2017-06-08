@@ -1,19 +1,99 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using Blu.core.common;
 using Blu.core.enums;
 using Blu.core.contracts;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Digests;
+using Org.BouncyCastle.Crypto.Signers;
+using Org.BouncyCastle.OpenSsl;
 
 
 namespace Blu.api.chef
 {
     public class ChefRequest: IChefRequest
     {
-        public Dictionary<string,string> XopsHeaders { get; set; }
-        public string                    body        { get; set; }
-        public ChefRequestMethod         method      { get; set; }
 
-        public ChefRequest()
+        private readonly string _timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
+        private readonly IChefConfig _chefConfig;
+        public ChefRequestMethod ChefRequestMethod { get; set; }
+
+        public ChefRequest(IChefConfig chefConfig, ChefRequestMethod chefRequestMethod)
         {
-            
+            _chefConfig = chefConfig;
+            ChefRequestMethod = chefRequestMethod;
+        }
+
+
+        public Dictionary<string, string> CreateXopsMessage(string body, string resourceUri)
+        {
+
+            string contentHashBody = body.ToBase64EncodedSha1String();
+
+            Dictionary<string, string> xopsHeaders = new Dictionary<string, string>
+            {
+                {"Accept", "application/json"},
+                {"X-Ops-Sign", "algorithm=sha1;version=1.0"},
+                {"X-Ops-UserId", _chefConfig.ClientName},
+                {"X-Ops-Timestamp", _timestamp},
+                {"X-Ops-Content-Hash",contentHashBody },
+                {"Host", $"{_chefConfig.OrganizationUri.Host}:{_chefConfig.OrganizationUri.Port}"},
+                {"X-Chef-Version", "11.4.0"}
+            };
+
+
+            //if (_chefRequestMethod != ChefRequestMethod.GET && _chefRequestMethod != ChefRequestMethod.DELETE)
+            //{
+            //    httpRequestMessage.Content = new ByteArrayContent(Encoding.UTF8.GetBytes(_body));
+            //    httpRequestMessage.Content.Headers.Add("Content-Type", "application/json");
+            //}
+
+            var i = 1;
+            //TODO: FIND OUT WHAT IS THAT CLIENT PRIVATE KEY!
+            foreach (var line in SignMessage(ChefRequestMethod, _chefConfig, "", contentHashBody).Split(60))
+            {
+                xopsHeaders.Add($"X-Ops-Authorization-{i++}", line);
+            }
+
+            return xopsHeaders;
+        }
+
+        
+
+        public string SignMessage(ChefRequestMethod chefRequestMethod, IChefConfig chefConfig, string privateKey, string bodyContentHash)
+        {
+            string canonicalHeader = $"Method:{chefRequestMethod}\nHashed Path:{chefConfig.OrganizationUri.AbsolutePath.ToBase64EncodedSha1String()}\nX-Ops-Content-Hash:{bodyContentHash}\nX-Ops-Timestamp:{_timestamp}\nX-Ops-UserId:{chefConfig.ClientName}";
+
+            byte[] input = Encoding.UTF8.GetBytes(canonicalHeader);
+
+            TextReader pemStream;
+
+            //TODO: This needs to be checked if we can use ICHef config property or this private key is something else :O 
+            //if (privateKey.Contains("UNSET") && ChefConfig.ValidationKey != "UNSET")
+            //{
+            //    ChefConfig.ValidationKey = ChefConfig.ValidationKey.Replace("-----BEGIN RSA PRIVATE KEY-----", "-----BEGIN RSA PRIVATE KEY-----\n");
+            //    ChefConfig.ValidationKey = ChefConfig.ValidationKey.Replace("-----END RSA PRIVATE KEY-----", "\n-----END RSA PRIVATE KEY-----");
+            //    pemStream = new StringReader(ChefConfig.ValidationKey);
+            //}
+            //else
+            //{
+            //    pemStream = File.OpenText(privateKey);
+            //}
+
+            pemStream = File.OpenText(privateKey);
+
+            var pemReader = new PemReader(pemStream);
+
+            AsymmetricKeyParameter key = ((AsymmetricCipherKeyPair)pemReader.ReadObject()).Private;
+
+            ISigner signer = new RsaDigestSigner(new NullDigest());
+            signer.Init(true, key);
+            signer.BlockUpdate(input, 0, input.Length);
+
+            return Convert.ToBase64String(signer.GenerateSignature());
+
         }
 
         //public string Get(string restClient, string restNode)

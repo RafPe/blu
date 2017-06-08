@@ -38,7 +38,7 @@ namespace Blu.api.chef
 
         public string Execute(IChefRequest req)
         {
-            switch (req.method)
+            switch (req.ChefRequestMethod)
             {
                 case ChefRequestMethod.get: break;
                 case ChefRequestMethod.post: break;

@@ -2,9 +2,9 @@
 {
     public enum ChefRequestMethod
     {
-        get,
-        post,
-        put,
-        delete
+        GET,
+        POST,
+        PUT,
+        DELETE
     }
 }

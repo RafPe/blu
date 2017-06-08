@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
-using ReturnType = BluApi.Common.Function;
+using System.Xml;
+using Blu.core.common;
+using ReturnType = Blu.core.common.Function;
 
 namespace Blu.api.chef.resources
 {
@@ -16,7 +18,7 @@ namespace Blu.api.chef.resources
                 case 3:
                     if (force)
                     {
-                        Logger.log("warn", "Client already exists and -Force key is provided. Trying to delete and recreate client.");
+                        //Logger.log("warn", "Client already exists and -Force key is provided. Trying to delete and recreate client.");
                         rt = Delete(clientName);
                         if (rt.Result == 0) rt = Add(clientName);
                         return rt;
@@ -30,9 +32,9 @@ namespace Blu.api.chef.resources
         {
             ReturnType rt = new ReturnType();
            
-            Logger.log("info", "Attempting to create client: " + clientName);
+           // Logger.log("info", "Attempting to create client: " + clientName);
 
-            ChefRequest cr = new ChefRequest();
+            //ChefRequest cr = new ChefRequest();
 
             Dictionary<string, string> dictClient = new Dictionary<string, string>()
             {
@@ -40,26 +42,28 @@ namespace Blu.api.chef.resources
                 { "admin", "false" }
             };
 
-            string json = JsonConvert.SerializeObject(dictClient, Formatting.Indented);
-            string response = cr.Post(ChefConfig.Validator, "clients", json);
-            if (response.Contains("409") && response.Contains("Conflict"))
-            {
-                rt.Result = 3;
-                rt.Message = "Client already exists.";
-                return rt;
-            }
-            else if (response.Contains("BEGIN RSA PRIVATE KEY"))
-            {
-                KeyHelper kh = new KeyHelper();
-                rt = kh.Format(response);
-                return rt;
-            }
-            else
-            {
-                rt.Result = 4;
-                rt.Message = "Error creating Client, API response: " + response;
-                return rt;
-            }
+            return null;
+
+            //string json = JsonConvert.SerializeObject(dictClient, Formatting.Indented);
+            //string response = cr.Post(ChefConfig.Validator, "clients", json);
+            //if (response.Contains("409") && response.Contains("Conflict"))
+            //{
+            //    rt.Result = 3;
+            //    rt.Message = "Client already exists.";
+            //    return rt;
+            //}
+            //else if (response.Contains("BEGIN RSA PRIVATE KEY"))
+            //{
+            //    KeyHelper kh = new KeyHelper();
+            //    rt = kh.Format(response);
+            //    return rt;
+            //}
+            //else
+            //{
+            //    rt.Result = 4;
+            //    rt.Message = "Error creating Client, API response: " + response;
+            //    return rt;
+            //}
         }
 
 
@@ -67,25 +71,25 @@ namespace Blu.api.chef.resources
         {
             ReturnType rt = new ReturnType();
             
-            Logger.log("info", "Attempting to delete client: " + clientName);
+            //Logger.log("info", "Attempting to delete client: " + clientName);
 
-            ChefRequest cr = new ChefRequest();
-            string response = cr.Delete(ChefConfig.Validator, "clients/" + clientName);
+            //ChefRequest cr = new ChefRequest();
+            //string response = cr.Delete(ChefConfig.Validator, "clients/" + clientName);
 
-            if (response.Contains("Response status code does not indicate success"))
-            {
-                rt.Result = 4;
-                rt.Data = null;
-                rt.Object = null;
-                rt.Message = "Unable to delete client.";
-            }
-            else
-            {
-                rt.Result = 0;
-                rt.Data = response;
-                rt.Object = null;
-                rt.Message = "Client: " + clientName + " is deleted.";
-            }
+            //if (response.Contains("Response status code does not indicate success"))
+            //{
+            //    rt.Result = 4;
+            //    rt.Data = null;
+            //    rt.Object = null;
+            //    rt.Message = "Unable to delete client.";
+            //}
+            //else
+            //{
+            //    rt.Result = 0;
+            //    rt.Data = response;
+            //    rt.Object = null;
+            //    rt.Message = "Client: " + clientName + " is deleted.";
+            //}
             return rt;
         }
     }

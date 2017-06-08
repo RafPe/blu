@@ -5,7 +5,7 @@ using Blu.core.contracts;
 
 namespace Blu.api.chef
 {
-    public class ChefConfig : IChefConfig
+    public class ChefConfig :
     {
         public Uri    OrganizationUri  { get; set; }
         public string Organization     { get; set; }
